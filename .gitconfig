@@ -26,6 +26,13 @@
 	# Undo a `git push`
 	undopush = push -f origin HEAD^:master
 
+	st = status
+	cam = commit -am
+	lc = log ORIG_HEAD.. --stat --no-merges
+	stab = status -sb
+	lo = log --pretty=oneline
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
 [apply]
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
@@ -56,6 +63,29 @@
 [merge]
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	tool = p4
+[mergetool "diffmerge"]
+	cmd = diffmerge --merge\n--result=$MERGED $LOCAL $BASE $REMOTE
+	trustExitCode = true
+[mergetool "p4"]
+	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+        keepTemporaries = false
+        trustExitCode = false
+        keepBackup = false
+[mergetool]
+	keepBackup = false
+	prompt = false
+	keepTemporaries = false
+[diff]
+	tool = p4
+[difftool "diffmerge"]
+	cmd = diffmerge $LOCAL $REMOTE
+[difftool "p4"]
+	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$LOCAL" "$REMOTE"
+[credential]
+	helper = osxkeychain
+[difftool]
+	prompt = false
 
 # Use `origin` as the default remote on the `master` branch in all cases
 [branch "master"]
