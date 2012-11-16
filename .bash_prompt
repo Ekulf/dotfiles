@@ -43,6 +43,19 @@ export WHITE
 export BOLD
 export RESET
 
+# enable git unstaged indicators - set to a non-empty value
+GIT_PS1_SHOWDIRTYSTATE="."
+ 
+# enable showing of untracked files - set to a non-empty value
+GIT_PS1_SHOWUNTRACKEDFILES="."
+ 
+# enable stash checking - set to a non-empty value
+GIT_PS1_SHOWSTASHSTATE="."
+ 
+# enable showing of HEAD vs its upstream
+GIT_PS1_SHOWUPSTREAM="auto"
+
+# These two functions are not used anymore but I will leave them here in case.
 function parse_git_dirty() {
 	[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
 }
@@ -51,5 +64,5 @@ function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+export PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(__git_ps1)\[$WHITE\]\n\$ \[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"
