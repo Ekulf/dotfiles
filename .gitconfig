@@ -82,7 +82,7 @@
 [diff]
 	tool = p4
 [difftool "diffmerge"]
-	cmd = diffmerge $LOCAL $REMOTE
+	cmd = diffmerge "$LOCAL" "$REMOTE"
 [difftool "p4"]
 	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "$LOCAL" "$REMOTE"
 [credential]
