@@ -50,7 +50,7 @@ My `~/.extra` looks something like this: (Actually these are Mathias' I have to 
 
 ```bash
 # PATH additions
-export PATH="~/bin:$PATH"
+export PATH="/usr/local/bin:~/bin:$PATH"
 
 # Git credentials
 # Not in the repository, to prevent people from accidentally committing under my name
