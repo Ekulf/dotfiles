@@ -32,6 +32,7 @@
 	stab = status -sb
 	lo = log --pretty=oneline
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+ff = merge --ff-only
 
 [apply]
 	# Detect whitespace errors when applying a patch
